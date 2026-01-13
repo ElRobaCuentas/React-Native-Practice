@@ -1,9 +1,11 @@
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
+
+import { Login } from './src/screens/login/Login'
 
 export const App = () => {
   return (
-    <View>
-      <Text> Hola Mundo</Text>
+    <View style={{flex:1}}>
+      <Login />
     </View>
   )
 }
