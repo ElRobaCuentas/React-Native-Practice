@@ -27,15 +27,15 @@
 //         backgroundColor: '#E0E0E0'
 //     },
 
-//     // buttomContainer: {
-//     //     gap: 15,
-//     // },
+    // buttomContainer: {
+    //     gap: 15,
+    // },
 
-//     // primatyButtom: {
-//     //     borderRadius: 30,
-//     //     height: 60,
-//     //     alignItems: 'center',
-//     //     padding: 20,
-//     // },
+    // primatyButtom: {
+    //     borderRadius: 30,
+    //     height: 60,
+    //     alignItems: 'center',
+    //     padding: 20,
+    // },
 
 // })

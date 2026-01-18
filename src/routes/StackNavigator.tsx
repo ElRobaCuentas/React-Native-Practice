@@ -1,9 +1,9 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import { FormularioScreen } from '../screens/pages/FormularioScreen';
-import { Opcional3Screen } from '../screens/pages/Opcional3Screen';
-import { Opcional4Screen } from '../screens/pages/Opcional4Screen';
+import { FormularioScreen } from '../screens/buttomScreens/FormularioScreen';
+import { Opcional3Screen } from '../screens/buttomScreens/Opcional3Screen';
+import { Opcional4Screen } from '../screens/buttomScreens/Opcional4Screen';
 import { LogoScreen } from '../screens/login/LogoScreen';
-import { LoginScreen } from '../screens/pages/LoginScreen';
+import { LoginScreen } from '../screens/buttomScreens/LoginScreen';
 
 
 export type RootStackParams = { 

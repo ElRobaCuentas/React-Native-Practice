@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native'
-import { PrimaryBottom } from '../../components/PrimaryBottom'
+import { PrimaryBottom } from '../../components/buttoms/MyCustomPrimaryBottom'
 import { NavigationProp, useNavigation } from '@react-navigation/native'
 import { RootStackParams } from '../../routes/StackNavigator'
-import { MyIcons } from '../../components/Icon'
+import { MyIcons } from '../../components/icon/Icon'
 
 
 
