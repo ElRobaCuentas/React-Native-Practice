@@ -56,26 +56,34 @@ export const LogoScreen = () => {
   )
 }
 
-
 export const styles = StyleSheet.create({
 
     container: {
         flex: 1,
         padding: 24,
         justifyContent: 'space-between',
+        borderWidth: 4,
+        borderColor: 'red'
+
     },
     logoContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        borderWidth: 3,
+        borderColor: 'black'
     },
     image: {
         borderRadius: 5,
         height: 450,
-        backgroundColor: '#E0E0E0'
+        backgroundColor: '#E0E0E0',
+        borderWidth: 3,
+        borderColor: 'black'
     },
 
     buttomContainer: {
         gap: 15,
+        borderWidth: 3,
+        borderColor: 'black'
     },
 })
