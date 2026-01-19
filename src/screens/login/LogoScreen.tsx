@@ -61,21 +61,29 @@ export const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        padding: 24,
-        justifyContent: 'space-between',
+        paddingHorizontal: 24,
+        // justifyContent: 'space-between',
+        borderWidth: 2,
+        borderColor: 'orange',
     },
     logoContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        borderWidth: 1,
+        borderColor: 'red',
     },
     image: {
         borderRadius: 5,
         height: 450,
-        backgroundColor: '#E0E0E0'
+        backgroundColor: '#E0E0E0',
+        borderWidth: 1,
+        borderColor: 'yellow',
     },
 
     buttomContainer: {
         gap: 15,
+        borderWidth: 1,
+        borderColor: 'red',
     },
 })

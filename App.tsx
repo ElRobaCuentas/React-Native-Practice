@@ -6,8 +6,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const App = () => {
   return (
+    // <SafeAreaView style={{ flex: 1 }}>
       <NavigationContainer>
-      <StackNavigator />
+        <StackNavigator />
       </NavigationContainer>
+    // </SafeAreaView>
   );
 };
