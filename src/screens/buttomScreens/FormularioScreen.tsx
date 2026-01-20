@@ -1,17 +1,22 @@
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 import { MyCustomHeader } from '../../components/header/MyCustomHeader'
 import { useState } from 'react';
+import { useMyForm } from '../../hooks/forms/useMyForm';
 
 export const FormularioScreen = () => {
 
 
-  const [textoEscrito, setTextoEscrito] = useState('');
+  const { email, password, phone, onChange } = useMyForm({
+    email: '',
+    password: '',
+    phone: '',
+  });
   
   const [textoAMostrar, setTextoAMostrar] = useState('');
   
   
   const touchButtom = () => { 
-    setTextoAMostrar(textoEscrito)
+    setTextoAMostrar(` ${email} - ${password} - ${phone}`);
   }
   
   
@@ -20,12 +25,31 @@ export const FormularioScreen = () => {
       <MyCustomHeader title='FormularioScreen' />
 
       <View style={styles.body}> 
-        {/*ENTRADA DEL TEXTO */}
+        {/*ENTRADA DEL CORREO */}
+        <Text>Correo:</Text>
         <TextInput
           style= {styles.input} 
-          placeholder='Escribir...'
-          onChangeText={(valor) => setTextoEscrito(valor)}
-          value= {textoEscrito}
+          placeholder='nombre@unmsm.edu.pe'
+          onChangeText={(valor) => onChange( valor, 'email')}
+          value= {email}
+        />
+        {/* INPUT DEL PHONE */}
+        <Text>Teléfono:</Text>
+        <TextInput
+          style={styles.input} 
+          placeholder='999888777'
+          onChangeText={(valor) => onChange(valor, 'phone')} // 4. Conectamos con 'telefono'
+          value={phone}
+        />
+
+        {/* INPUT DE PASSWORD */}
+        <Text>Contraseña:</Text>
+        <TextInput
+          style={styles.input} 
+          placeholder='******'
+          secureTextEntry
+          onChangeText={(valor) => onChange(valor, 'password')} // 5. Conectamos con 'password'
+          value={password}
         />
 
         <Pressable 

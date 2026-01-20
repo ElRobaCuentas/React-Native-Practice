@@ -1,12 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
-import { PrimaryBottom } from '../../components/buttoms/MyCustomPrimaryBottom'
+import { StyleSheet, Text, View, Image } from 'react-native'
+
 import { NavigationProp, useNavigation } from '@react-navigation/native'
-import { RootStackParams } from '../../routes/StackNavigator'
+
+import { PrimaryBottom } from '../../components/buttoms/MyCustomPrimaryBottom'
 import { MyIcons } from '../../components/icon/Icon'
-
-
-
-import { Image } from 'react-native';
+import { RootStackParams } from '../../routes/StackNavigator'
+import { Spacer } from '../../components/separete/Spacer'
 
 export const LogoScreen = () => {
 
@@ -17,14 +16,20 @@ export const LogoScreen = () => {
   return (
     <View  style={ styles.container}>
 
+      <Spacer height={5}/>
+
       <View  style={styles.logoContainer}> 
         <MyIcons name="contrast-outline" size={20}/>
         <Text  style={{fontSize: 20}}> logo </Text>
       </View>
 
+      <Spacer height={5}/>
+
       <Image source={{uri: "https://media.es.wired.com/photos/679f8349207a8a1f88d10a2b/16:9/w_2560%2Cc_limit/apple-maps-gear-1048233858.jpg"}}
         style={styles.image}      
       />
+
+      <Spacer height={20}/>
 
       <View  style= {styles.buttomContainer}> 
         <PrimaryBottom
@@ -59,26 +64,26 @@ export const LogoScreen = () => {
 export const styles = StyleSheet.create({
 
     container: {
+      // padding: 24,
+      // justifyContent: 'space-between',
         flex: 1,
-        padding: 24,
-        justifyContent: 'space-between',
-        borderWidth: 4,
-        borderColor: 'red'
-
+        paddingHorizontal: 24,
+        borderWidth: 3,
+        borderColor: 'red',
     },
     logoContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 3,
-        borderColor: 'black'
+        borderColor: 'black',
     },
     image: {
         borderRadius: 5,
         height: 450,
         backgroundColor: '#E0E0E0',
         borderWidth: 3,
-        borderColor: 'black'
+        borderColor: 'black',
     },
 
     buttomContainer: {

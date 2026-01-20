@@ -37,24 +37,26 @@ export const LoginScreen = () => {
 
       <View  style={styles.body}>  
 
-        <MyCustomForm 
-          control={control}
-          name='email'
-          label='Correo'
-        />
+        <View style={styles.containerForm}> 
+          <MyCustomForm 
+            control={control}
+            name='email'
+            label='Correo'
+          />
 
-        <MyCustomForm 
-          control={control}
-          name='password'
-          label='Password'
-        />
+          <MyCustomForm 
+            control={control}
+            name='password'
+            label='Password'
+          />
+          <Pressable 
+            style={styles.buttomPressable}
+            onPress={ handleSubmit(onSubmit)}
+          > 
+            <Text style={{color: 'white'}}> Submit </Text>
+          </Pressable>      
+        </View>
 
-        <Pressable 
-          style={styles.buttomPressable}
-          onPress={ handleSubmit(onSubmit)}
-        > 
-          <Text style={{color: 'white'}}> Submit </Text>
-        </Pressable>      
 
         
         {
@@ -71,24 +73,36 @@ export const LoginScreen = () => {
 const styles = StyleSheet.create({
 
   container: {
-    flex: 1
+    flex: 1,
+    borderWidth: 3,
+    borderColor: 'red'
   },
 
   body: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 3,
+    borderColor: 'black',
+  },
+  containerForm: {
+    borderWidth: 3,
+    borderColor: 'red',
+    width: '100%',
     padding: 24
   },
+  
   buttomPressable: {
     backgroundColor: 'blue',
     borderRadius: 10,
     height: 50,
     width: '30%',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   output: {
+    borderWidth: 3,
+    borderColor: 'black',
     marginTop: 10,
   },
 })
