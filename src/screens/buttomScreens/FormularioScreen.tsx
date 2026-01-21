@@ -6,17 +6,33 @@ import { useMyForm } from '../../hooks/forms/useMyForm';
 export const FormularioScreen = () => {
 
 
-  const { email, password, phone, onChange } = useMyForm({
+  const { 
+
+    email, password, phone, 
+    onChange, 
+    isEmailValid, isPhoneValid, isPasswordValid,
+    onBlurEmail, isEmailTouched,  
+    onBlurPhone, isPhoneTouched,
+    onBlurPassword, isPasswordTouched,
+
+  } = useMyForm({
+    
     email: '',
     password: '',
     phone: '',
+
   });
   
   const [textoAMostrar, setTextoAMostrar] = useState('');
   
   
   const touchButtom = () => { 
-    setTextoAMostrar(` ${email} - ${password} - ${phone}`);
+
+    if( isEmailValid && isPhoneValid && isPasswordValid) {
+      setTextoAMostrar(` ${email} - ${phone} - ${password}`);
+    } else {
+      setTextoAMostrar('Revisa los campos!!');
+    }
   }
   
   
@@ -25,32 +41,65 @@ export const FormularioScreen = () => {
       <MyCustomHeader title='FormularioScreen' />
 
       <View style={styles.body}> 
+
         {/*ENTRADA DEL CORREO */}
         <Text>Correo:</Text>
         <TextInput
           style= {styles.input} 
-          placeholder='nombre@unmsm.edu.pe'
+          // placeholder='nombre@unmsm.edu.pe'
           onChangeText={(valor) => onChange( valor, 'email')}
+          onBlur={onBlurEmail}
           value= {email}
         />
+
+        {/*se muestra la condicion solo si el correo es invalido y ya fue tocado */}
+        {
+          (!isEmailValid && isEmailTouched ) && (
+              <Text style={styles.errorText} > Correo no válido </Text>
+          )
+        }
+
+
         {/* INPUT DEL PHONE */}
         <Text>Teléfono:</Text>
         <TextInput
           style={styles.input} 
-          placeholder='999888777'
+          // placeholder='999888777'
           onChangeText={(valor) => onChange(valor, 'phone')} // 4. Conectamos con 'telefono'
+          onBlur={ onBlurPhone }
           value={phone}
+
+          keyboardType='numeric' //para que muestre el teclado en //! solo números
+          maxLength={9}
         />
+
+        {/*si escribió algo o no son 9 numeros, entonces */}
+        {
+          (!isPhoneValid && isPhoneTouched) && (
+            <Text style={styles.errorText} > Deben ser 9 números </Text>
+          )
+        }
+
 
         {/* INPUT DE PASSWORD */}
         <Text>Contraseña:</Text>
         <TextInput
           style={styles.input} 
-          placeholder='******'
-          secureTextEntry
+          // placeholder='******'
           onChangeText={(valor) => onChange(valor, 'password')} // 5. Conectamos con 'password'
+          onBlur={ onBlurPassword }
           value={password}
+          
+          //para que se vean puntitos (...)
+          secureTextEntry={true}
         />
+
+        {
+          (!isPasswordValid && isPasswordTouched) && (
+          <Text style={styles.errorText}> 
+            Debe contener letras y numeros en un total de 6 caracteres
+          </Text>
+        )}
 
         <Pressable 
           onPress={ touchButtom }
@@ -62,7 +111,7 @@ export const FormularioScreen = () => {
         {/*SALIDA DEL TEXTO */}
 
         {
-          textoAMostrar.length > 0 && (  <Text style={styles.output}> Escribiste: {textoAMostrar} </Text>  )
+          textoAMostrar.length > 0 && (  <Text style={styles.output}> {textoAMostrar} </Text>  )
         }
       </View>
     </View>
@@ -103,6 +152,14 @@ const styles = StyleSheet.create({
 
   output: {
     marginTop: 30,
+  },
+
+
+  errorText: {
+    color: 'red',
+    fontSize: 12,
+    marginBottom: 10,
+    fontWeight: 'bold'
   },
 
 })
