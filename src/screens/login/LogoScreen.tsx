@@ -45,13 +45,13 @@ export const LogoScreen = () => {
           border
         />
         <PrimaryBottom 
-          label='Opcional 3'
+          label='Imagen de perros (API)'
           onPress={ () => navigation.navigate('Opcional3Screen')}
           color="#8E8E93"
           textColor='white'
         />
         <PrimaryBottom
-          label='Opcional 4'
+          label='useContext y useReduce'
           onPress={ () => navigation.navigate('Opcional4Screen')}
           color="#8E8E93" 
           textColor='white'   
@@ -69,7 +69,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 24,
         borderWidth: 3,
-        borderColor: 'red',
+        borderColor: 'orange',
     },
     logoContainer: {
         flexDirection: 'row',

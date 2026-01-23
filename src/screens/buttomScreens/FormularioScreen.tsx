@@ -129,7 +129,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 24
+    padding: 24,
+    borderWidth: 3,
+    borderColor: 'red'
   },
 
   input: {
@@ -138,7 +140,8 @@ const styles = StyleSheet.create({
     borderRadius: 10, 
     height: 50,
     width: '70%',
-    marginBottom: 10
+    marginBottom: 10,
+    
   },
 
   buttomPressable: {
