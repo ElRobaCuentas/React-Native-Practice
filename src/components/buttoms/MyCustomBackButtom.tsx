@@ -1,6 +1,6 @@
 import { NavigationProp, useNavigation } from "@react-navigation/native"
 import { Pressable } from "react-native"
-import { RootStackParams } from "../../routes/StackNavigator";
+import { RootStackParams } from "../../navigations/StackNavigator";
 import { MyIcons } from "../icon/Icon";
 
 

@@ -1,8 +1,8 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { FormularioScreen } from '../screens/buttomScreens/FormularioScreen';
-import { Opcional3Screen } from '../screens/buttomScreens/Opcional3Screen';
-import { Opcional4Screen } from '../screens/buttomScreens/Opcional4Screen';
-import { LogoScreen } from '../screens/login/LogoScreen';
+import { CallAPIScreen} from '../screens/buttomScreens/CallAPIScreen';
+import { ContextScreen } from '../screens/buttomScreens/ContextScreen';
+import { LogoScreen } from '../screens/HOME/LogoScreen';
 import { LoginScreen } from '../screens/buttomScreens/LoginScreen';
 
 
@@ -10,8 +10,8 @@ export type RootStackParams = {
   LogoScreen: undefined;
   LoginScreen: undefined;
   FormularioScreen: undefined;
-  Opcional3Screen: undefined;
-  Opcional4Screen: undefined;
+  CallAPIScreen: undefined;
+  ContextScreen: undefined;
 }
 
 
@@ -25,8 +25,8 @@ export const StackNavigator = () => {
       <Stack.Screen name="LogoScreen" component={LogoScreen} />
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
       <Stack.Screen name="FormularioScreen" component={FormularioScreen} />
-      <Stack.Screen name="Opcional3Screen" component={Opcional3Screen} />
-      <Stack.Screen name="Opcional4Screen" component={Opcional4Screen} />
+      <Stack.Screen name="CallAPIScreen" component={CallAPIScreen} />
+      <Stack.Screen name="ContextScreen" component={ContextScreen} />
     </Stack.Navigator>
   );
 }

@@ -1,10 +1,10 @@
 import { createContext, useReducer } from "react";
-import { Action, initialState, reducerFunction, State } from "./reducer";
+import { Action, initialState, MyState, reducerFunction } from "./reducer";
 
 
 // 1. Definimos que va a viajar por el contexto (tuberias)
 interface ContextProps {
-    state: State;
+    state: MyState;
     dispatch: React.Dispatch<Action>
 }
 
@@ -26,6 +26,5 @@ export const MyProvider = ( {children}: any ) => {
                 {children}
         </MyContext.Provider>
     )
+
 }
-
-

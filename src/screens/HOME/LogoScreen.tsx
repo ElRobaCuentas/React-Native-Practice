@@ -4,7 +4,7 @@ import { NavigationProp, useNavigation } from '@react-navigation/native'
 
 import { PrimaryBottom } from '../../components/buttoms/MyCustomPrimaryBottom'
 import { MyIcons } from '../../components/icon/Icon'
-import { RootStackParams } from '../../routes/StackNavigator'
+import { RootStackParams } from '../../navigations/StackNavigator'
 import { Spacer } from '../../components/separete/Spacer'
 
 export const LogoScreen = () => {
@@ -16,20 +16,20 @@ export const LogoScreen = () => {
   return (
     <View  style={ styles.container}>
 
-      <Spacer height={5}/>
+      <Spacer height={12}/>
 
       <View  style={styles.logoContainer}> 
-        <MyIcons name="contrast-outline" size={20}/>
-        <Text  style={{fontSize: 20}}> logo </Text>
+        <MyIcons name="contrast-outline" size={24}/>
+        <Text  style={{fontSize: 24}}> logo </Text>
       </View>
 
-      <Spacer height={5}/>
+      <Spacer height={12}/>
 
       <Image source={{uri: "https://media.es.wired.com/photos/679f8349207a8a1f88d10a2b/16:9/w_2560%2Cc_limit/apple-maps-gear-1048233858.jpg"}}
         style={styles.image}      
       />
 
-      <Spacer height={20}/>
+      <Spacer height={24}/>
 
       <View  style= {styles.buttomContainer}> 
         <PrimaryBottom
@@ -45,14 +45,14 @@ export const LogoScreen = () => {
           border
         />
         <PrimaryBottom 
-          label='Imagen de perros (API)'
-          onPress={ () => navigation.navigate('Opcional3Screen')}
+          label='API'
+          onPress={ () => navigation.navigate('CallAPIScreen')}
           color="#8E8E93"
           textColor='white'
         />
         <PrimaryBottom
-          label='useContext y useReduce'
-          onPress={ () => navigation.navigate('Opcional4Screen')}
+          label='CONTEXTO'
+          onPress={ () => navigation.navigate('ContextScreen')}
           color="#8E8E93" 
           textColor='white'   
         />
@@ -64,31 +64,21 @@ export const LogoScreen = () => {
 export const styles = StyleSheet.create({
 
     container: {
-      // padding: 24,
-      // justifyContent: 'space-between',
         flex: 1,
         paddingHorizontal: 24,
-        borderWidth: 3,
-        borderColor: 'orange',
     },
     logoContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 3,
-        borderColor: 'black',
     },
     image: {
-        borderRadius: 5,
+        borderRadius: 24,
         height: 450,
         backgroundColor: '#E0E0E0',
-        borderWidth: 3,
-        borderColor: 'black',
     },
 
     buttomContainer: {
         gap: 15,
-        borderWidth: 3,
-        borderColor: 'black'
     },
 })

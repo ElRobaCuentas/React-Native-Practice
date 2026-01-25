@@ -1,9 +1,10 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { MyCustomHeader } from '../../components/header/MyCustomHeader'
 import { Controller, useForm } from 'react-hook-form'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { TextInput } from 'react-native-gesture-handler'
 import { MyCustomForm } from '../../components/forms/MyCustomForm'
+import { MyContext } from '../../context/context'
 
 
 export interface FormInputs {
@@ -12,6 +13,11 @@ export interface FormInputs {
 }
 
 export const LoginScreen = () => {
+
+  //traigo el contexto
+  const { state } = useContext(MyContext);
+
+
 
   //Para pintar el resultado final
   const [textoAMostrar, setTextoAMostrar] = useState('');
@@ -35,7 +41,12 @@ export const LoginScreen = () => {
 
       <MyCustomHeader title='LoginScreen' />
 
+
+
       <View  style={styles.body}>  
+      
+      <Text> Titulo: </Text>
+      <Text> { state.titulo } </Text>
 
         <View style={styles.containerForm}> 
           <MyCustomForm 
@@ -74,20 +85,14 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    borderWidth: 3,
-    borderColor: 'red'
   },
 
   body: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 3,
-    borderColor: 'black',
   },
   containerForm: {
-    borderWidth: 3,
-    borderColor: 'red',
     width: '100%',
     padding: 24
   },

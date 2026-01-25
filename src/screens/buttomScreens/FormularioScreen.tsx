@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 import { MyCustomHeader } from '../../components/header/MyCustomHeader'
 import { useState } from 'react';
-import { useMyForm } from '../../hooks/forms/useMyForm';
+import { useMyForm } from '../../hooks/useMyForm';
 
 export const FormularioScreen = () => {
 
@@ -130,8 +130,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 24,
-    borderWidth: 3,
-    borderColor: 'red'
   },
 
   input: {
