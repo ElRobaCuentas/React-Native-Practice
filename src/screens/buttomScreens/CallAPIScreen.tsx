@@ -2,17 +2,22 @@ import { FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native
 import { MyCustomHeader } from '../../components/header/MyCustomHeader'
 import { useImages } from '../../hooks/useImages'
 import { Spacer } from '../../components/separete/Spacer';
+import { useContext } from 'react';
+import { MyContext } from '../../context/context';
 
 export const CallAPIScreen = () => {
   
-  const { images, getImages, changeDog, changeCat, changeFox } = useImages();
+  const { images, changeDog, changeCat, changeFox } = useImages();
+
+
+  const { state } = useContext(MyContext);
+
 
   const changeImageButton = (id: string) => {
     if ( id === '1' ) return changeDog();
     if ( id === '2' ) return changeCat();
     if ( id === '3' ) return changeFox();
   }
-
 
 
   return (
@@ -23,9 +28,12 @@ export const CallAPIScreen = () => {
 
 
       <View style={styles.body}>  
+        
+      <Text> {state.titulo} </Text>
 
         <Spacer height={24}/>
-        
+
+
         <FlatList 
           data = { images }
           keyExtractor={ (item) => item.id }

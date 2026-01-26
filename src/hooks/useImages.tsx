@@ -1,12 +1,6 @@
-import { useEffect, useState } from "react";
-
-interface AnimalImage {
-  id: string;
-  imageUrl: string;
-  title: string;
-}
-
-
+import { useContext, useEffect, useState } from "react";
+import { MyContext } from "../context/context";
+import { AnimalImage } from "../context/reducer";
 
 
 export const useImages = () => {
@@ -17,7 +11,14 @@ export const useImages = () => {
         <AnimalImage[]> -> tipado estricto. Una coleccion de muchos animales (lista)
     */
 
-    const [images, setImages] = useState<AnimalImage[]>([])
+    // const [images, setImages] = useState<AnimalImage[]>([])
+
+
+    
+    const {state, dispatch} = useContext(MyContext)
+
+
+
     
     //funcion para pedir la imagen del perrito a la API
     const getImages = async () => {
@@ -38,9 +39,10 @@ export const useImages = () => {
           {id: '1', title: 'PERRO', imageUrl: dataDog.message},
           {id: '2', title: 'GATO', imageUrl: dataCat[0].url},
           {id: '3', title: 'ZORRO' ,imageUrl: dataFox.image},
-        ]
+        ];
 
-        setImages(newList);
+        // setImages(newList);
+        dispatch({type: 'CARGAR IMAGENES', payload: newList}) //enviamos la lista completa al reducer
 
       } catch (e) {
       console.log(e); 
@@ -69,9 +71,16 @@ export const useImages = () => {
       try {
         const res = await fetch('https://dog.ceo/api/breeds/image/random');
         const data: any = await res.json(); 
-        setImages(prev => prev.map(img => 
-          img.id === '1' ? { ...img, imageUrl: data.message } : img
-        ));
+
+        // setImages(prev => prev.map(img => 
+        //   img.id === '1' ? { ...img, imageUrl: data.message } : img
+        // ));
+
+        dispatch({
+          type: 'ACTUALIZAR IMAGENES',
+          payload: { id: '1', newUrl: data.message }
+        })
+
       } catch (e) { console.log(e); }
     };
 
@@ -79,9 +88,16 @@ export const useImages = () => {
       try {
         const res = await fetch('https://api.thecatapi.com/v1/images/search');
         const data: any = await res.json(); 
-        setImages(prev => prev.map(img => 
-          img.id === '2' ? { ...img, imageUrl: data[0].url } : img
-        ));
+
+        // setImages(prev => prev.map(img => 
+        //   img.id === '2' ? { ...img, imageUrl: data[0].url } : img
+        // ));
+
+        dispatch({
+          type: 'ACTUALIZAR IMAGENES',
+          payload: { id: '2', newUrl: data[0].url }
+        })
+
       } catch (e) { console.log(e); }
     };
 
@@ -89,19 +105,31 @@ export const useImages = () => {
       try {
         const res = await fetch('https://randomfox.ca/floof/');
         const data: any = await res.json(); 
-        setImages(prev => prev.map(img => 
-          img.id === '3' ? { ...img, imageUrl: data.image } : img
-        ));
+
+        // setImages(prev => prev.map(img => 
+          // img.id === '3' ? { ...img, imageUrl: data.image } : img
+        // ));
+        
+        dispatch({
+          type: 'ACTUALIZAR IMAGENES',
+          payload: { id: '3', newUrl: data.image }
+        })
+
       } catch (e) { console.log(e); }
     };
 
+    //LOGICA DE PERSISTENCIA
+
     useEffect(() => {
-        getImages();
+
+        if( state.images.length === 0 ) {
+          getImages();
+        }
     }, []);
 
     return {
-      images,
-      getImages,
+      images: state.images,
+      getImages: getImages,
       changeDog,
       changeCat,
       changeFox

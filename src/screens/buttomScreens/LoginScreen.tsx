@@ -1,8 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { MyCustomHeader } from '../../components/header/MyCustomHeader'
-import { Controller, useForm } from 'react-hook-form'
+import {  useForm } from 'react-hook-form'
 import { useContext, useState } from 'react'
-import { TextInput } from 'react-native-gesture-handler'
 import { MyCustomForm } from '../../components/forms/MyCustomForm'
 import { MyContext } from '../../context/context'
 

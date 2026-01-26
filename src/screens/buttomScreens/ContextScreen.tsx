@@ -24,9 +24,9 @@ export const ContextScreen = () => {
       <MyCustomHeader title='ContextScreen'/>
 
       <View style={styles.body}>
-        <Text> CONTADOR </Text>
+        {/* <Text> CONTADOR </Text> */}
         
-        <View style={styles.containerCounter}>
+        {/* <View style={styles.containerCounter}>
           <Text style={styles.counter}> {state.contador} </Text>
         </View>
 
@@ -42,7 +42,7 @@ export const ContextScreen = () => {
           onPress={ () => dispatch({type: 'DECREMENTAR'})}
         >
           <Text> DECREMENTAR </Text>
-        </Pressable>
+        </Pressable> */}
 
         <Spacer  height={32} />
 

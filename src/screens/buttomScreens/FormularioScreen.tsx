@@ -2,6 +2,9 @@ import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 import { MyCustomHeader } from '../../components/header/MyCustomHeader'
 import { useState } from 'react';
 import { useMyForm } from '../../hooks/useMyForm';
+import { USER_PROFILE_MOCK, UserProfile } from '../../data/profileMock';
+import { USER_AUTH_MOCK } from '../../data/authMock';
+import { Spacer } from '../../components/separete/Spacer';
 
 export const FormularioScreen = () => {
 
@@ -23,15 +26,42 @@ export const FormularioScreen = () => {
 
   });
   
-  const [textoAMostrar, setTextoAMostrar] = useState('');
-  
-  
+  const [showError, setShowError] = useState('');
+
+
+  const [userLogged, setUserLogged] = useState<UserProfile | null>(null);
+
+
   const touchButtom = () => { 
 
+    //1. validacion
     if( isEmailValid && isPhoneValid && isPasswordValid) {
-      setTextoAMostrar(` ${email} - ${phone} - ${password}`);
+
+      //2. buscamos dentro del mock de autenticación
+      const authFound = USER_AUTH_MOCK.find( u =>
+          u.email === email &&
+          u.phone === phone &&
+          u.password === password
+      );
+
+      //3. si es que los encontramos traemos los datos del perfil
+      if ( authFound ) {
+          //4. la unica forma que encajen es por medio del id
+          const profile = USER_PROFILE_MOCK.find( u => u.id === authFound.id )
+
+          if (profile) {
+            setUserLogged(profile);
+            setShowError(''); //el estado inicial sigue estando vacío
+          } else {
+            setUserLogged(null); //ES IMPOSIBLE QUE ESTE ERROR APAREZCA YA QUE EN AMBOS (authMock y profileMock) hay un id que existe y corresponde a cada objeto
+            setShowError('Perfil no encontrado');
+          }
+      } else {
+        setUserLogged(null);
+        setShowError('Revisa tus credenciales')
+      }
     } else {
-      setTextoAMostrar('Revisa los campos!!');
+      setShowError('Campos invalidos') 
     }
   }
   
@@ -108,11 +138,33 @@ export const FormularioScreen = () => {
           <Text style={{color: 'white'}}> Submit </Text>
         </Pressable>
 
-        {/*SALIDA DEL TEXTO */}
+        <Spacer height={20}/>
 
         {
-          textoAMostrar.length > 0 && (  <Text style={styles.output}> {textoAMostrar} </Text>  )
+          userLogged && (
+
+            <View style={styles.userDates}> 
+              <Text> DATOS DEL USUARIO </Text>
+
+              <Text> { userLogged.names } </Text>
+              <Text> { userLogged.lastname } </Text>
+              <Text> { userLogged.age } </Text>
+              <Text> { userLogged.sex } </Text>
+              <Text> { userLogged.rol } </Text>
+
+            </View>
+          )  
+        } 
+
+        { 
+          //solo muestra si no hay ningun usuario logeado (el estado es null) y el estado del error ya no está vacío
+          (!userLogged && showError !== '') && (
+            <Text> {showError} </Text>
+          )
         }
+
+
+
       </View>
     </View>
   )
@@ -155,12 +207,18 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
 
-
   errorText: {
     color: 'red',
     fontSize: 12,
     marginBottom: 10,
     fontWeight: 'bold'
   },
+
+  userDates: {
+    borderWidth: 2,
+    borderColor: 'black',
+    borderRadius: 20,
+    padding: 10
+  }
 
 })
