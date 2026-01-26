@@ -4,6 +4,7 @@ import { CallAPIScreen} from '../screens/buttomScreens/CallAPIScreen';
 import { ContextScreen } from '../screens/buttomScreens/ContextScreen';
 import { LogoScreen } from '../screens/HOME/LogoScreen';
 import { LoginScreen } from '../screens/buttomScreens/LoginScreen';
+import { ZustandScreen } from '../screens/buttomScreens/ZustandScreen';
 
 
 export type RootStackParams = { 
@@ -12,6 +13,7 @@ export type RootStackParams = {
   FormularioScreen: undefined;
   CallAPIScreen: undefined;
   ContextScreen: undefined;
+  ZustandScreen: undefined;
 }
 
 
@@ -27,6 +29,7 @@ export const StackNavigator = () => {
       <Stack.Screen name="FormularioScreen" component={FormularioScreen} />
       <Stack.Screen name="CallAPIScreen" component={CallAPIScreen} />
       <Stack.Screen name="ContextScreen" component={ContextScreen} />
+      <Stack.Screen name="ZustandScreen" component={ZustandScreen} />
     </Stack.Navigator>
   );
 }
